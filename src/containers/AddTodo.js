@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {TextInput, TouchableOpacity, View} from 'react-native';
+import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import {addTodo} from './../actions';
-import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 
 class AddTodo extends Component {
   state = {
@@ -30,7 +30,7 @@ class AddTodo extends Component {
             height: 50,
             flex: 1,
             padding: 5,
-            fontFamily: 'Caveat Brush'
+            fontFamily: 'Caveat Brush',
           }}
         />
         <TouchableOpacity onPress={() => this.addTodo(this.state.text)}>
