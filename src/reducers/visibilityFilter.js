@@ -1,5 +1,5 @@
 const visibiltyFilter = (state = 'SHOW_ALL', action) => {
-    return state
-}
+  return state;
+};
 
-export default visibiltyFilter
+export default visibiltyFilter;

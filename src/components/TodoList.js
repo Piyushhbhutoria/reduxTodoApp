@@ -1,22 +1,45 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, View} from 'react-native';
+import Touchable from 'react-native-platform-touchable';
+import {SwipeListView} from 'react-native-swipe-list-view';
+import Styles from '../../constants/Styles';
+import GoalItem from './GoalItem';
 
-const TodoList = ({todos, toggleTodos}) => {
+const TodoList = props => {
+  console.log('todolist', props.action);
   return (
-    <View style={{padding: 20}}>
-      {todos.map(todo => (
-        <TouchableOpacity key={todo.id} onPress={() => toggleTodos(todo.id)}>
-          <Text
-            style={{
-              fontFamily: 'Caveat Brush',
-              fontSize: 24,
-              textDecorationLine: todo.completed ? 'line-through' : 'none',
-            }}>
-            {todo.text}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+    <SwipeListView
+      useFlatList={true}
+      keyExtractor={item => item.id}
+      data={props.todo}
+      renderItem={(rowData, rowMap) => {
+        return (
+          <View>
+            <GoalItem
+              id={rowData.item.id}
+              title={rowData.item.text}
+              pressed={rowData.item.completed}
+              onUpdate={() => props.action(rowData.item.id)}
+            />
+          </View>
+        );
+      }}
+      renderHiddenItem={(rowData, rowMap) => (
+        <View>
+          <Touchable
+            onPress={() => props.action(rowData.item.id)}
+            style={Styles.rightText}>
+            <Text style={Styles.rightText}>Delete</Text>
+          </Touchable>
+        </View>
+      )}
+      rightOpenValue={-90}
+      onRowOpen={(rowKey, rowMap) => {
+        setTimeout(() => {
+          rowMap[rowKey] && rowMap[rowKey].closeRow();
+        }, 2000);
+      }}
+    />
   );
 };
 

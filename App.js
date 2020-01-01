@@ -1,12 +1,3 @@
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <Provider store={store}>
-//         <TodoApp />
-//       </Provider>
-//     );
-//   }
-// }
 import React, {Component} from 'react';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import {createAppContainer} from 'react-navigation';
@@ -14,11 +5,11 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Provider} from 'react-redux';
 import Color from './constants/Color';
-import Header from './src/component/Header';
-import TabBarIcon from './src/component/TabBarIcon';
-import AllScreen from './src/screen/AllScreen';
-import CompScreen from './src/screen/CompScreen';
-import PendScreen from './src/screen/PendScreen';
+import Header from './src/components/Header';
+import TabBarIcon from './src/components/TabBarIcon';
+import AllScreen from './src/containers/AllScreen';
+import CompScreen from './src/containers/CompScreen';
+import PendScreen from './src/containers/PendScreen';
 import store from './src/store';
 
 const config = {
