@@ -10,12 +10,6 @@ import {deleteTodos} from '../actions';
 class DeleteAll extends Component {
   deleteAll = () => {
     this.props.dispatch(deleteTodos());
-    // AsyncStorage.removeItem('currentGoals');
-    // this.setState({
-    //   courseGoal: [],
-    //   pendingGoal: [],
-    //   completeGoal: [],
-    // });
   };
 
   render() {

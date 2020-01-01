@@ -3,9 +3,9 @@ import {View} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {connect} from 'react-redux';
 import Styles from '../../constants/Styles';
+import {deleteTodo, toggleTodo} from '../actions';
 import Title from '../components/Title';
 import TodoList from '../components/TodoList';
-import {toggleTodo} from '../actions';
 import DeleteAll from './DeleteAll';
 
 const mapStateToProps = state => ({
@@ -14,15 +14,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   toggleTodos: id => dispatch(toggleTodo(id)),
+  deleteTodos: id => dispatch(deleteTodo(id)),
 });
 
-const CompScreen = ({todos, toggleTodos}) => {
+const CompScreen = ({todos, toggleTodos, deleteTodos}) => {
   const total = Object.keys(todos).length;
-  const completetotal = todos.filter(x => x.completed === true);
+  const completeTotal = todos.filter(x => x.completed === true);
   const completed = todos.filter(x => x.completed === true).length;
   const percent = (completed / total).toFixed(2) * 100;
-  console.log(completetotal);
-
   return (
     <View style={Styles.container}>
       <Title
@@ -32,7 +31,11 @@ const CompScreen = ({todos, toggleTodos}) => {
             : 'No Task to Complete'
         }
       />
-      <TodoList todo={completetotal} action={toggleTodos} />
+      <TodoList
+        todo={completeTotal}
+        toggle={toggleTodos}
+        delete={deleteTodos}
+      />
       <DeleteAll />
     </View>
   );

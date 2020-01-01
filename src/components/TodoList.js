@@ -6,7 +6,6 @@ import Styles from '../../constants/Styles';
 import GoalItem from './GoalItem';
 
 const TodoList = props => {
-  console.log('todolist', props.action);
   return (
     <SwipeListView
       useFlatList={true}
@@ -19,7 +18,7 @@ const TodoList = props => {
               id={rowData.item.id}
               title={rowData.item.text}
               pressed={rowData.item.completed}
-              onUpdate={() => props.action(rowData.item.id)}
+              onUpdate={() => props.toggle(rowData.item.id)}
             />
           </View>
         );
@@ -27,7 +26,7 @@ const TodoList = props => {
       renderHiddenItem={(rowData, rowMap) => (
         <View>
           <Touchable
-            onPress={() => props.action(rowData.item.id)}
+            onPress={() => props.delete(rowData.item.id)}
             style={Styles.rightText}>
             <Text style={Styles.rightText}>Delete</Text>
           </Touchable>
